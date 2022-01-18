@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lpu card Design</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+</head>
+<body>
+    
+    DAESIGN CARDS
+    <form action="" >
+        <label for="">Message</label>
+        <input type="text" id="message-text">
+
+        <input type="submit" onclick="generateCard()">
+        <!-- <button
+        onclick="generateCard()"
+         >Generate Card</button> -->
+    </form>
+
+    <script src="">
+        function generateCard()
+        {
+            let lpuImg = 'https://upload.wikimedia.org/wikipedia/en/3/3a/Lovely_Professional_University_logo.png';
+            var doc = new jsPdf();
+            let msg = document.getElementById('message-text');
+            doc.text(35, 25, msg)
+            doc.addImage(lpuImg, 'JPEG', 15, 40, 180, 160);
+            let bottomImg = 'https://static.vecteezy.com/system/resources/thumbnails/000/694/605/small/abstract-orange-stylish-wave-banner-background.jpg'
+            doc.addImage(bottomImg, 'JPEG', 15, 40, 180, 160);
+            doc.save('sample.pdf');
+        }
+      
+
+    </script>
+</body>
+</html>

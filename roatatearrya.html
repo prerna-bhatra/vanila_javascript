@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ROTATION</h1>
+    <button onclick=" roatation()">Rotate</button>
+    <script src="">
+        function roatation()
+        {
+            console.log("HEY")
+            let a=[1,2,3,4,5,6,7];
+        console.log("BEFORE ROATE",a)
+        let d=2;
+        for(let i=0;i<d;i++)
+        {
+            let temp =a[0];
+
+            for(let j=0;j<a.length-1;j++)
+            {
+                a[i]=a[i+1];
+
+
+            }
+            a[a.length-1]=temp;
+        }
+
+        console.log("AFTER ROTATE",a);
+        }
+       
+    </script>
+</body>
+</html>

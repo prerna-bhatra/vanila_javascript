@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>The onclick Event</h1>
+
+    <button onclick="downloadImage()">Click me</button>
+
+    <p id="demo"></p>
+
+    <script>
+      function myFunction() {
+        document.getElementById("demo").innerHTML = "Hello World";
+      }
+
+      const btn = document.getElementById("downloadImage");
+      const url =
+        "https://fetchknack-dev-resources.nyc3.digitaloceanspaces.com/61dd46de832e4075e32d5177/documents/1641891972961-marvel.jpg";
+
+      async function downloadImage() {
+        const image = await fetch(url);
+        const imageBlog = await image.blob();
+        const imageURL = URL.createObjectURL(imageBlog);
+
+        const link = document.createElement("a");
+        link.href = imageURL;
+        link.download = "image file name here";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+     
+    </script>
+  </body>
+</html>

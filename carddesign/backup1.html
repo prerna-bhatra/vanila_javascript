@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="content">
+        <h3>Sample h3 tag</h3>
+        <p>Sample pararaph</p>
+        <img style="width:50px" src="https://robohash.org/88.130.49.243.png" alt="">
+    </div>
+    <div id="editor"></div>
+    <button id="cmd" onclick="pdfgen()">Generate PDF</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+
+    <script src="">
+        
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+var cmd = document.querySelector('#cmd');
+ function pdfgen() { 
+    console.log("HEY") 
+    var contentContainer = document.querySelector('#content');
+    doc.fromHTML(contentContainer.outerHTML, 15, 15, {
+        'width': 70,
+        'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+};
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    #img-area {
+        height: 600px;
+    }
+
+    #my-node {
+        background-image: url('https://cdn2.vectorstock.com/i/thumb-large/71/96/curled-silver-corner-on-orange-background-vector-7997196.jpg');
+        background-repeat: no-repeat;
+    }
+    #company-logo
+    {
+        /* width: 100px;
+        height: 100px; */
+        
+    }
+
+    #image-data {
+        border: 1px solid black;
+        padding: 50px 50px 50px 50px;
+        margin-left: 15px;
+        height: 500px;
+    }
+
+    #lpu-logo {
+        float: right;
+        width: 100px;
+    }
+
+    #lpu-logo img {
+        width: 100%;
+    }
+</style>
+
+<body>
+
+    <div class=" text-center">
+
+        <body>
+            <div>
+                <h1>Card Design</h1>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <label for="">Write Message here </label>
+                        <textarea id="msg-value" type="text" onkeyup="messageValue(event)"
+                            class="form-control"></textarea>
+                        <input type="file" name="" id="company-logo" onchange="companyImage(event)">
+                        <button onclick="myFunction()">generate image</button>
+                    </div>
+                </div>
+                <div id="image-data">
+                    <div id="my-node">
+                        <div id="img-area">
+                            <div id="company-logo">
+                                <img src="" id="output_image" alt="company logo">
+                            </div>
+                            <div id="lpu-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/en/3/3a/Lovely_Professional_University_logo.png"
+                                    alt="">
+                            </div>
+                            <div>
+                                <p id="msg-area"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <script>
+                function companyImage(event) {
+                    console.log("IMAGE ", event)
+                    document.getElementById('output_image').style.display = 'block';
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = document.getElementById('output_image');
+                        output.src = reader.result;
+                    }
+                    reader.readAsDataURL(event.target.files[0]);
+                }
+
+                function messageValue(event) {
+
+                    let extraKey = ['CapsLock', 'Shift', 'Control', 'ArrowRight', 'ArrowLeft'];
+                    if (extraKey.indexOf(event.key) < 0) {
+                        if (event.key == "Enter") {
+                            console.log("IF 1")
+                            document.getElementById('msg-area').innerHTML += '<br/>';
+                        }
+                        else if (event.key == 'Backspace') {
+                            console.log("BACKSPACE")
+                            let prevVal = document.getElementById('msg-value').value;
+                            document.getElementById('msg-area').innerHTML = prevVal;
+                            console.log("PREV VALE", prevVal);
+                        }
+                        else {
+                            console.log("ELSEE 3")
+                            document.getElementById('msg-area').innerHTML += event.key;
+                        }
+
+                    }
+
+                }
+                function myFunction() {
+
+                    var node = document.getElementById('my-node');
+
+                    domtoimage.toPng(node)
+                        .then(function (dataUrl) {
+                            // var img = new Image();
+                            // img.src = dataUrl;
+                            // console.log("IMAGE ", img)
+                            // let imgArea = document.getElementById('img-area');
+                            // imgArea.appendChild(img);
+                            // // console.log("IMAGE AREA",imgArea)
+                            // node.appendChild(imgArea)
+
+                            console.log("IMAGE URL ", dataUrl)
+
+
+                        })
+                        .catch(function (error) {
+                            console.error('oops, something went wrong!', error);
+                        });
+                }
+
+            </script>
+        </body>
+
+</html>

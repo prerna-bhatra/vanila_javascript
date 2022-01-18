@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+</head>
+
+<body>
+    <input id="message-text" type="text">
+    <button type="button" onclick="myFunction()">Submit</button>
+
+    <script>
+        function myFunction() {
+            var lpuImg = new Image();
+            lpuImg.src ='https://upload.wikimedia.org/wikipedia/en/3/3a/Lovely_Professional_University_logo.png'
+            var bottomImg = new Image();
+            bottomImg.src ='https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Blue_triangle_01.png/640px-Blue_triangle_01.png'
+            var doc = new jsPDF('p', 'mm', 'a3');
+            let msg = document.getElementById('message-text').value ;
+            doc.text(msg, 40, 40);
+            doc.addImage(bottomImg, 100,200, 300,250);
+            doc.addImage(lpuImg, 200, 40, 40,40);
+            doc.save('sample.pdf');
+        }
+    </script>
+
+</body>
+
+</html>
